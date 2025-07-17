@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>How to Add or Change Logo in Flutter App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>📘 Docs</h2>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Add Logo</a>
+        <a href="#">Usage</a>
+        <a href="#">FAQ</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>How to Add or Change Logo in a Flutter App</h1>
+      <ol>
+        <li>
+          <strong>Replace the Logo Asset:</strong>
+          <ul>
+            <li>Place your new logo at <code>assets/icon/logo.png</code>.</li>
+            <li>Ensure path and name match exactly.</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Update <code>pubspec.yaml</code>:</strong>
+          <pre><code>flutter:
+  assets:
+    - assets/icon/logo.png</code></pre>
+        </li>
+
+        <li>
+          <strong>Use the Logo in Your App:</strong>
+          <pre><code>Image.asset('assets/icon/logo.png')</code></pre>
+        </li>
+
+        <li>
+          <strong>Update App Icon (Optional):</strong>
+          <p>Use the <a href="https://pub.dev/packages/flutter_launcher_icons" target="_blank">flutter_launcher_icons</a> package:</p>
+          <pre><code>dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/logo.png"</code></pre>
+
+          <p>Then run:</p>
+          <pre><code>flutter pub get
+flutter pub run flutter_launcher_icons:main</code></pre>
+        </li>
+
+        <li>
+          <strong>Rebuild the App:</strong>
+          <pre><code>flutter clean
+flutter run</code></pre>
+        </li>
+      </ol>
+    </main>
+  </div>
+</body>
+</html>

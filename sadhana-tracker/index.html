@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sadhana Tracker Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { display: flex; height: 100vh; font-family: sans-serif; }
+
+    nav {
+      width: 20%;
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-right: 1px solid #ccc;
+    }
+
+    nav a {
+      display: block;
+      margin-bottom: 10px;
+      color: #0366d6;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      width: 80%;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    #content {
+      padding: 10px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h3>📘 Documentation</h3>
+    <a href="#" onclick="loadPage('pages/home.html')">Introduction</a>
+    <a href="#" onclick="loadPage('pages/add_or_change_logo.html')">Setup</a>
+    <a href="#" onclick="loadPage('pages/usage.html')">Usage</a>
+    <a href="#" onclick="loadPage('pages/faq.html')">FAQ</a>
+  </nav>
+
+  <main>
+    <div id="content">Welcome! Click a link on the left to view content.</div>
+  </main>
+
+  <script>
+    function loadPage(url) {
+      fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("content").innerHTML = html;
+          history.pushState({ page: url }, "", "#" + url);
+        })
+        .catch(err => {
+          document.getElementById("content").innerHTML = "<p>Error loading content.</p>";
+        });
+    }
+
+    // Load page on back/forward
+    window.addEventListener("popstate", (e) => {
+      if (e.state?.page) {
+        loadPage(e.state.page);
+      }
+    });
+
+    // Load if hash present
+    window.addEventListener("DOMContentLoaded", () => {
+      const hash = window.location.hash.slice(1);
+      if (hash) loadPage(hash);
+    });
+  </script>
+
+</body>
+</html>
